@@ -1,4 +1,4 @@
-from app.models import User, Post 
+from app.models import User, Post, Comment, Vote 
 from app.db import Session, Base, engine
 
 # drop/rebuild tables
@@ -29,5 +29,27 @@ db.add_all([
 ])
 
 db.commit()
+
+#Comment seeds
+db.add_all([
+    Comment(comment_text='Nunc rhoncus dui vel sem.', user_id=1, post_id=2),
+    Comment(comment_text='Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', user_id=1, post_id=3),
+    Comment(comment_text='Aliquam erat volutpat. In congue.', user_id=2, post_id=1),
+    Comment(comment_text='Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.', user_id=2, post_id=3),
+    Comment(comment_text='In hac habitasse platea dictumst.', user_id=3, post_id=3)
+])
+db.commit()
+
+#Vote seeds
+# insert votes
+db.add_all([
+  Vote(user_id=1, post_id=2),
+  Vote(user_id=1, post_id=4),
+  Vote(user_id=2, post_id=4),
+  Vote(user_id=3, post_id=4),
+  Vote(user_id=4, post_id=2)
+])
+db.commit()
+
 
 db.close()
