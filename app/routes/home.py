@@ -24,7 +24,7 @@ def index():
 def login():
     if session.get('loggedIn') is None:
         return render_template('login.html')
-        
+
     return render_template('login.html')
 
 @bp.route('/post/<id>')
@@ -34,5 +34,9 @@ def single(id):
     post = db.query(Post).filter(Post.id == id).one()
 
     #render single post template
-    return render_template('single-post.html', post=post)
+    return render_template(
+        'single-post.html', 
+        post=post, 
+        loggedIn=session.get('loggedIn')
+    )
 

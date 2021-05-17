@@ -19,8 +19,9 @@
 <section>
   <h2>Your Posts</h2>
   <ol>
-    {% for posts in posts %}
+    {% for post in posts %}
     <li>
+      {% include "partials/post-info.html" %}
       <a href href="/dashboard/edit/{{post.id}}" class="edit-link">Edit Post</a>
     </li>
     {% endfor %}
