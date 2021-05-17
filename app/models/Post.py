@@ -16,6 +16,7 @@ class Post(Base):
     updatedAt = Column(DateTime, default=datetime.now, onupdate=datetime.now)
     
     comments = relationship('Comment', cascade='all,delete')
+    user = relationship('User')
 
     vote_count = column_property(
         select([func.count(Vote.id)]).where(Vote.post_id == id)
